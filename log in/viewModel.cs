@@ -3,21 +3,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace log_in
 {
     public class User : INotifyPropertyChanged
     {
-        private string firstname, lastname, email;
+        private string firstname, lastname, email, message;
         private int age;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand ClickCommand { get; }
         public User()
         {
             age = 0;
             firstname = "";
             lastname = "";
             email = "";
+            message = "";
+            ClickCommand = new Command(Rejestr);
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string Message
+        {
+            get => message;
+            set
+            {
+                message = value;
+                OnPropertyChanged(nameof(Message));
+            }
+        }
         public string FirstName
         {
             get => firstname;
@@ -66,6 +80,19 @@ namespace log_in
                     OnPropertyChanged(nameof(Age));
                 }
             }
+        }
+        private void Rejestr()
+        {
+            if ((FirstName.Length == 0)||(LastName.Length == 0)||(Email.Length == 0)||(Age <= 0))
+            {
+                Message = $"Rejestracja nie powiodła się! " +
+                    $"Nieprawidłowe bądź brak danych!";
+            }
+            else
+            {
+                Message = $"Pomyślnie zarejestrowano";
+            }
+                
         }
         protected void OnPropertyChanged(string propertyname)
         {

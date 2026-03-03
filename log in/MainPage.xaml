@@ -2,18 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="log_in.MainPage"
-             >
+             BackgroundColor="#D1D4D8">
+    <ContentPage.Resources>
+        <Style x:Key="Label1" TargetType="Label">
+            <Setter Property="WidthRequest" Value="300"/>
+            <Setter Property="HeightRequest" Value="80"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style x:Key="Label2" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="Baton123" TargetType="Button">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="WidthRequest" Value="80"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="BorderWidth" Value="2"/>
+            <Setter Property="BorderColor" Value="#202429"/>
+            <Setter Property="TextColor" Value="#202429"/>
 
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="WidthRequest" Value="300"/>
+            <Setter Property="BackgroundColor" Value="#B4C0D1"/>
+        </Style>
+    </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout>
-            <Entry Text="{Binding FirstName}"/>
-            <Entry Text="{Binding LastName}"/>
-            <Entry Text="{Binding Email}"/>
-            <Entry Text="{Binding Age}"/>
-            <Label Text="{Binding FirstName}"/>
-            <Label Text="{Binding LastName}"/>
-            <Label Text="{Binding Email}"/>
-            <Label Text="{Binding Age}"/>
+        <VerticalStackLayout
+            Margin="20"
+            Spacing="10"
+            HorizontalOptions="Center"
+            >
+            <Label Text="Zarejestruj się" Style="{StaticResource Label1}"/>
+            <Image Source="awatar.jpeg" HeightRequest="130"/>
+            <Label Text="Imię:" Style="{StaticResource Label2}"/>
+            <Entry Placeholder="Wpisz swoje Imię" Text="{Binding FirstName}"/>
+            <Label Text="Nazwisko:" Style="{StaticResource Label2}"/>
+            <Entry Placeholder="Wpisz swoje Nazwisko" Text="{Binding LastName}"/>
+            <Label Text="Email:" Style="{StaticResource Label2}"/>
+            <Entry Placeholder="Wpisz swój Email" Text="{Binding Email}"/>
+            <Label Text="Hasło:" Style="{StaticResource Label2}"/>
+            <Entry Placeholder="Wpisz swoje Hasło" IsPassword="True"/>
+            <HorizontalStackLayout
+                HorizontalOptions="Start"
+                Spacing="10">
+                <Button Command="{Binding ClickCommand}" Text="Zarejestruj" BackgroundColor="#6172E5" Style="{StaticResource Baton123}"/>
+                <Button Text="Anuluj" BackgroundColor="White" Style="{StaticResource Baton123}"/>
+                
+            </HorizontalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="{Binding Message}" FontSize="10"/>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
